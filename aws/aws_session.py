@@ -26,3 +26,13 @@ def verify_connection(session):
         print(f"[ERROR] AWS authentication failed: {error}")
         return False
 
+def get_client(session, service):
+    # Creates AWS service clients.
+    try:
+        client = session.client(service)
+        return client
+    except ClientError as error:
+        print(
+            f"[ERROR] Unable to create {service} client: {error}"
+        )
+        return None
