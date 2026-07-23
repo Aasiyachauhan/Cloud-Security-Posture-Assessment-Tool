@@ -1,0 +1,5 @@
+boto3
+botocore
+rich
+jinja2
+python-dotenv
