@@ -3,6 +3,8 @@ from aws.aws_session import (
     verify_connection
 )
 
+from aws.iam_checks import run_iam_checks
+
 
 def main():
 
@@ -31,11 +33,33 @@ def main():
                 "\n✓ Connected successfully"
             )
 
+
+            print(
+                "\nRunning IAM assessment...\n"
+            )
+
+
+            findings = run_iam_checks(session)
+
+
+            if findings:
+
+                for finding in findings:
+                    print(finding.to_dict())
+
+            else:
+
+                print(
+                    "No IAM findings detected."
+                )
+
+
         else:
 
             print(
                 "\n✗ AWS connection failed"
             )
+
 
     else:
 
